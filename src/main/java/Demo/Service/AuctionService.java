@@ -21,6 +21,14 @@ public class AuctionService extends GeneralService<Auction>{
 
     public void promoteAddToAuction( Add add ) {
 
+        if( add == null ) {
+            throw new RuntimeException("Null add");
+        }
+
+        if ( addRepository.findById( add.getId() ).isEmpty() ) {
+            throw new RuntimeException("Bad add");
+        }
+
         Auction auction = new Auction();
 
         auction.setStartDate( new Date() );

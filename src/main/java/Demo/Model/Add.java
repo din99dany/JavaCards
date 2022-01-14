@@ -34,7 +34,7 @@ public class Add {
     @ManyToOne(fetch = FetchType.LAZY)
     private PlayCard playCard;
 
-    @OneToMany( mappedBy = "sellingAdd",fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "sellingAdd",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE )
     private Set<Auction> auctions;
 
     public long getId() {

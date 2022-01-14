@@ -3,6 +3,7 @@ package Demo.Controller;
 import Demo.Model.Add;
 import Demo.Model.PlayCard;
 import Demo.Service.PlayCardService;
+import ch.qos.logback.core.encoder.EchoEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class PlayCardController {
     private PlayCardService playCardService;
 
     @GetMapping("/play_card")
-    public ResponseEntity<Iterable<PlayCard>> getSeach( @RequestParam( required = false ) String search) {
-        return ResponseEntity.ok( playCardService.getSeach( search ) );
+    public ResponseEntity<Iterable<PlayCard>> getSearch( @RequestParam( required = false ) String search) {
+        return ResponseEntity.ok( playCardService.getSearch( search ) );
     }
 
     @GetMapping("/play_card/{id}")
@@ -40,7 +41,7 @@ public class PlayCardController {
             try {
                 playCardService.saveObject( playCard.get() );
                 return ResponseEntity.ok().build();
-            } catch ( Exception e ) {
+            } catch ( RuntimeException e ) {
                 System.out.println( e.getMessage() );
                 return ResponseEntity.internalServerError().build();
             }
@@ -55,6 +56,7 @@ public class PlayCardController {
         if ( playCardService.findById( id ).isPresent() ) {
             try {
                 playCardService.deleteById(id);
+                return  ResponseEntity.ok().build();
             } catch ( Exception e ) {
                 System.out.println( e.getMessage() );
                 return ResponseEntity.internalServerError().build();

@@ -31,16 +31,16 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToMany( mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Add> adds;
 
-    @OneToMany( mappedBy = "sender", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "sender", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE )
     private Set<Chat> sendChats;
 
-    @OneToMany( mappedBy = "receiver", fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "receiver", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Chat> receiveChats;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Offer> offers;
 
     public long getId() {

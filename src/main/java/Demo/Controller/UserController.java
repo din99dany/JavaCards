@@ -49,7 +49,7 @@ public class UserController {
             }
         }
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping( path = "/users/{id}")

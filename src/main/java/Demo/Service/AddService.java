@@ -48,7 +48,7 @@ public class AddService extends GeneralService<Add> {
     }
 
     public Boolean verify( Add add ) {
-        if ( add == null ) {
+        if ( add == null || add.getUser() == null || add.getPlayCard() == null ) {
             return false;
         }
 

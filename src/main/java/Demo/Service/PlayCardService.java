@@ -30,7 +30,7 @@ public class PlayCardService extends GeneralService<PlayCard> {
         return Optional.of(newPlayCard);
     }
 
-    public List<PlayCard> getSeach(String toSearch ) {
+    public List<PlayCard> getSearch(String toSearch ) {
         List<PlayCard> cards = findAll();
 
         if ( toSearch == null ) {

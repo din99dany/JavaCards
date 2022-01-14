@@ -29,7 +29,7 @@ public class Auction {
     @Column( name = "end_date", nullable = false )
     private Date endDate;
 
-    @OneToMany( mappedBy = "sellingAdd", fetch = FetchType.LAZY)
+    @OneToMany( mappedBy = "sellingAdd", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Offer> offerSet;
 
     @ManyToOne

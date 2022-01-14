@@ -21,7 +21,6 @@ public class ChatController {
 
     @GetMapping(path = "/chat", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Iterable<Chat>> getChats() {
-
         List<Chat> chats = chatService.findAll();
 
         if( !chats.isEmpty() ) {
@@ -36,12 +35,12 @@ public class ChatController {
 
         Optional<Chat> chat = chatService.createChat( json.get("senderId").asLong(),
                 json.get("receiverId").asLong(),
-                json.get("message").asText()
+                    json.get("message").asText()
         );
 
         if ( chat.isPresent() ) {
             chatService.saveObject( chat.get() );
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
     }
@@ -55,11 +54,6 @@ public class ChatController {
             System.out.println( e.getMessage() );
             return ResponseEntity.badRequest().build();
         }
-    }
-
-    @PutMapping( path = "/chat/{id}")
-    public ResponseEntity<Void> updateChat( @PathVariable long id ) {
-        return ResponseEntity.badRequest().build();
     }
 
 }

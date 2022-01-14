@@ -30,7 +30,7 @@ public class PlayCard {
     @Column( name = "collection", nullable = false )
     private String collection;
 
-    @OneToMany( mappedBy = "playCard", fetch = FetchType.LAZY )
+    @OneToMany( mappedBy = "playCard", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE )
     private Set<Add> adds;
 
 

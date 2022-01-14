@@ -25,6 +25,11 @@ public class OfferService extends GeneralService<Offer>{
     private AuctionRepository auctionRepository;
 
     public Optional<Offer>  createOffer( long auctionId, long sellerId, double price ) {
+
+        if ( price < 0 ) {
+            return Optional.empty();
+        }
+
         Optional<Auction> auction = auctionRepository.findById( auctionId );
         Optional<User> user = userRepository.findById(sellerId);
 
