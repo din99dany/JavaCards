@@ -52,3 +52,46 @@ API-ul satisface urmatoarele functionalitati
       * DELETE : sterge licitatia cu `id` dar pastreaza anuntul.
       * GET : returneaza o lista cu ofertele din cadrul licitatiei cu id-ul `id`
       * POST : creaza o noua oferta  in cadrul licitatiei `id`. Ca si parametrii de query avem `offererId`,  id-ul utilizatorului care face oferta precum si `price`, oferta in sine. Pentru ca o oferta sa fie valida, aceasta trebuie sa fie cu 5% mai mult decat oferta anterioara.
+
+
+## Schema baza de date
+
+```
+--------+
+|        |
+|        |
+| Chat   |
+|        |<-------+
+|        |        |
+|        |        |
++--------+        |
+    ^             |
+    |             |
+    |        +----+----+
+    |        |         |           +--------+           +--------+
+    |        |         |           |        |           |        |
+    |        |   User  +----------->        |           |        |
+    +--------+         |           | Add    |           | Play   |
+             |         |           |        |<----------+ Card   |
+             |         |           |        |           |        |
+             +----+----+           |        |           |        |
+                  |                +----+---+           +--------+
+                  |                     |
+                  |                     |
+                  |                     |
+                  |                     |
+                  |                     |
+                  |                     |
+             +----v----+                |
+             |         |            +---v----+
+             |         |            |        |
+             | Offer   |            |        |
+             |         |<-----------+ Auction|
+             |         |            |        |
+             |         |            |        |
+             +---------+            |        |
+                                    +--------+
+
+
+```
+
